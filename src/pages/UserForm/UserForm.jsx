@@ -1,5 +1,5 @@
 import React from "react";
-import { FormUI } from "../../UI/FormUI";
+import { FormUI } from "../../components/UI/FormUI";
 
 const UserForm = () => {
   return (

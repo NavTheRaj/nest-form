@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Input, Button, Select, DatePicker, Radio } from "antd";
 import "./FormUI.css";
-import { country } from "../../storage/countryData";
+import { country } from "../../../storage/countryData";
 
 const layout = {
   labelCol: {

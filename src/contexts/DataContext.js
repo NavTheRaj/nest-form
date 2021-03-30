@@ -1,4 +1,7 @@
+import axios from "axios";
 import React, { useState, useContext, useEffect } from "react";
+import { serverEndPoint } from "../services/api";
+import { message } from "antd";
 
 const DataContext = React.createContext();
 
@@ -40,9 +43,32 @@ export const useData = () => {
 export default function DataProvider({ children }) {
   const [loading, setLoading] = useState();
 
+  const formDataSubmit = (values) => {
+    axios
+      .post(serverEndPoint.formSubmit, {
+        name: values.name,
+        gender: values.gender,
+        phone: values.phone,
+        email: values.email,
+        address: values.address,
+        nationality: values.nationality,
+        dob: values.dob,
+        education: values.education,
+        modeOfContact: values.modeOfContact,
+      })
+      .then((res) => {
+        message.success("Submitted Data!!");
+      })
+      .catch((err) => {
+        message.error(err);
+      });
+  };
+
   useEffect(() => {}, []);
 
-  const value = {};
+  const value = {
+    formDataSubmit,
+  };
 
   return (
     <DataContext.Provider value={value}>

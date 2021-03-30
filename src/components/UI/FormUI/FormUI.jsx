@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Input, Button, Select, DatePicker, Radio } from "antd";
 import "./FormUI.css";
 import { country } from "../../../storage/countryData";
+import { useData } from "../../../contexts/DataContext";
 
 const layout = {
   labelCol: {
@@ -14,13 +15,15 @@ const layout = {
 
 const FormUI = () => {
   const [value, setValue] = useState();
+  const { formDataSubmit } = useData();
 
   const onChange = (e) => {
     setValue(e.target.value);
   };
 
   const onFinish = (values) => {
-    console.log("Success:", values);
+    // console.log("Success:", values);
+    formDataSubmit(values);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -70,7 +73,7 @@ const FormUI = () => {
 
         <Form.Item
           label="Phone Number"
-          name="phoneNumber"
+          name="phone"
           rules={[
             {
               required: true,

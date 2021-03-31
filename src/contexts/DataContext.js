@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useContext, useEffect } from "react";
 import { serverEndPoint } from "../services/api";
 import { message } from "antd";
+import moment from "moment";
 
 const DataContext = React.createContext();
 
@@ -9,39 +10,9 @@ export const useData = () => {
   return useContext(DataContext);
 };
 
-// const getFormattedDate = (firestoreData) => {
-//   const date = firestoreData.toDate();
-
-//   let month = date.getMonth() + 1;
-//   let day = date.getDate();
-//   let hour = date.getHours();
-//   let min = date.getMinutes();
-//   let sec = date.getSeconds();
-
-//   month = (month < 10 ? "0" : "") + month;
-//   day = (day < 10 ? "0" : "") + day;
-//   hour = (hour < 10 ? "0" : "") + hour;
-//   min = (min < 10 ? "0" : "") + min;
-//   sec = (sec < 10 ? "0" : "") + sec;
-
-//   var str =
-//     date.getFullYear() +
-//     "-" +
-//     month +
-//     "-" +
-//     day +
-//     " " +
-//     hour +
-//     ":" +
-//     min +
-//     ":" +
-//     sec;
-
-//   return str;
-// };
-
 export default function DataProvider({ children }) {
   const [loading, setLoading] = useState();
+  const [data, setData] = useState([]);
 
   const formDataSubmit = (values) => {
     axios
@@ -52,22 +23,39 @@ export default function DataProvider({ children }) {
         email: values.email,
         address: values.address,
         nationality: values.nationality,
-        dob: values.dob,
+        dob: moment(values.dob).format("YYYY/MM/DD"),
         education: values.education,
         modeOfContact: values.modeOfContact,
       })
       .then((res) => {
         message.success("Submitted Data!!");
+        getAllData();
       })
       .catch((err) => {
-        message.error(err);
+        message.error(err.message);
       });
   };
 
-  useEffect(() => {}, []);
+  const getAllData = () => {
+    axios
+      .get(serverEndPoint.allData)
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
+
+  useEffect(() => {
+    getAllData();
+  }, []);
 
   const value = {
     formDataSubmit,
+    getAllData,
+    data,
+    setData,
   };
 
   return (

@@ -3,6 +3,7 @@ import { Form, Input, Button, Select, DatePicker, Radio } from "antd";
 import "./FormUI.css";
 import { country } from "../../../storage/countryData";
 import { useData } from "../../../contexts/DataContext";
+import { useHistory } from "react-router";
 
 const layout = {
   labelCol: {
@@ -14,6 +15,7 @@ const layout = {
 };
 
 const FormUI = () => {
+  const history = useHistory();
   const [value, setValue] = useState();
   const { formDataSubmit } = useData();
 
@@ -22,8 +24,8 @@ const FormUI = () => {
   };
 
   const onFinish = (values) => {
-    // console.log("Success:", values);
     formDataSubmit(values);
+    history.push("/users");
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -65,9 +67,9 @@ const FormUI = () => {
           ]}
         >
           <Select placeholder="Select Your Gender" allowClear>
-            <Select.Option value="male">male</Select.Option>
-            <Select.Option value="female">female</Select.Option>
-            <Select.Option value="other">other</Select.Option>
+            <Select.Option value="Male">Male</Select.Option>
+            <Select.Option value="Female">Female</Select.Option>
+            <Select.Option value="Other">Other</Select.Option>
           </Select>
         </Form.Item>
 
@@ -94,7 +96,7 @@ const FormUI = () => {
             },
           ]}
         >
-          <Input />
+          <Input type="email" />
         </Form.Item>
 
         <Form.Item

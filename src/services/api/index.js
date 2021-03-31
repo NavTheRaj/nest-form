@@ -4,4 +4,5 @@ export const countryEndPoint = {
 
 export const serverEndPoint = {
   formSubmit: "http://localhost:3001/users",
+  allData: "http://localhost:3001/users",
 };

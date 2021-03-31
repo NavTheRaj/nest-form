@@ -1,0 +1,33 @@
+.user-data-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-data-container .user-data-table {
+  padding: 30px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  background: rgb(255, 255, 255);
+  border-radius: 1rem;
+}
+
+.user-data-container .user-data-table h1 {
+  text-align: center;
+  color: rgb(85, 85, 204);
+}
+
+.user-data-table-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ant-btn {
+  background: rgb(85, 85, 204) !important;
+  color: #fff !important;
+  border-radius: 0.5rem !important;
+}

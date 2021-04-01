@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Form, Input, Button, Select, DatePicker, Radio } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Select,
+  DatePicker,
+  Radio,
+  InputNumber,
+  message,
+} from "antd";
 import "./FormUI.css";
 import { country } from "../../../storage/countryData";
 import { useData } from "../../../contexts/DataContext";
@@ -124,8 +133,10 @@ const FormUI = () => {
         >
           <Select placeholder="Select Your Nationality" allowClear>
             {country &&
-              country.map((value) => (
-                <Select.Option value={value}>{value}</Select.Option>
+              country.map((value, index) => (
+                <Select.Option key={index} value={value}>
+                  {value}
+                </Select.Option>
               ))}
           </Select>
         </Form.Item>

@@ -15,6 +15,7 @@ export default function DataProvider({ children }) {
   const [data, setData] = useState([]);
 
   const formDataSubmit = (values) => {
+    console.log(values);
     axios
       .post(serverEndPoint.formSubmit, {
         name: values.name,
@@ -28,10 +29,11 @@ export default function DataProvider({ children }) {
         modeOfContact: values.modeOfContact,
       })
       .then((res) => {
-        message.success("Submitted Data!!");
+        message.success("Data Added Successfully!!");
         getAllData();
       })
       .catch((err) => {
+        console.error(err.statusCode);
         message.error(err.message);
       });
   };

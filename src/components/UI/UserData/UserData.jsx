@@ -14,7 +14,7 @@ const UserData = () => {
       <div className="user-data-table">
         <h1>Users Data</h1>
         <div className="user-data-table-action">
-          <Button classname="add-user-btn" onClick={() => history.push("/")}>
+          <Button className="add-user-btn" onClick={() => history.push("/")}>
             Add User
           </Button>
         </div>
